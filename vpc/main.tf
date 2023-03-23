@@ -7,10 +7,6 @@ terraform {
   }
 }
 
-provider "alicloud" {
-  profile = "akProfile"
-}
-
 resource "alicloud_vpc" "this" {
   vpc_name   = var.vpc_name
   cidr_block = var.vpc_cidr
