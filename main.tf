@@ -2,7 +2,7 @@ terraform {
   required_providers {
     alicloud = {
       source = "aliyun/alicloud"
-      version = "1.198.0"
+      version = "1.201.2"
     }
   }
 }
@@ -11,7 +11,13 @@ provider "alicloud" {
   profile = "akProfile"
 }
 
-resource "alicloud_vpc" "vpc" {
-  vpc_name   = "tf_test_foo"
-  cidr_block = "172.16.0.0/12"
+resource "alicloud_vpc" "this" {
+  vpc_name   = var.vpc_name
+  cidr_block = var.vpc_cidr
+}
+
+resource "alicloud_vswitch" "this" {
+  vpc_id     = alicloud_vpc.this.id
+  cidr_block = var.vsw_cidr
+  zone_id    = var.vsw_zone
 }
