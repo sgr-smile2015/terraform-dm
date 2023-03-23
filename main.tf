@@ -5,6 +5,13 @@ terraform {
       version = "1.201.2"
     }
   }
+  backend "oss" {
+    profile             = "akProfile"
+    bucket              = "tf-backend-test"
+    key                 = "test/terraform.tfstate"
+    acl                 = "private"
+    encrypt             = true
+  }
 }
 
 provider "alicloud" {
